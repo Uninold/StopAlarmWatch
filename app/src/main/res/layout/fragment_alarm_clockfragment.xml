@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="100px"
+    tools:context="arnold.agura.com.stopalarmwatch.AlarmClock.AlarmClockFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TimePicker
+            android:id="@+id/timepicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnStart"
+            android:textColor="#fff"
+            android:background="#2c3e50"
+            android:layout_width="match_parent"
+            android:layout_marginRight="20px"
+            android:layout_marginLeft="20px"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timepicker"
+            android:text="Start" />
+
+        <Button
+            android:id="@+id/btnStop"
+            android:textColor="#fff"
+            android:background="#2c3e50"
+            android:layout_marginRight="20px"
+            android:layout_marginLeft="20px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timepicker"
+            android:text="Stop"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timepicker"
+            android:layout_marginTop="90px"
+            android:text="holllaaaaaaa"
+            android:textAlignment="center"/>
+    </RelativeLayout>
+</FrameLayout>

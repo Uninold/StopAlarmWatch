@@ -36,14 +36,14 @@ class StopWatchFragment : Fragment() {
     internal var TimeBuff: Long = 0
     internal var UpdateTime = 0L
 
-
+    internal var Time = 0L
     internal var Seconds: Int = 0
     internal var Minutes: Int = 0
     internal var MilliSeconds: Int = 0
-
     internal var flag:Boolean=false
 
-    var startButton: ImageButton? = null
+    var mStartButton: ImageButton? = null
+    var mReset: Button? = null
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
     private var mParam2: String? = null
@@ -64,12 +64,92 @@ class StopWatchFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         val rootView = inflater?.inflate(R.layout.fragment_stop_watch, container, false)
+        hour = rootView!!.findViewById(R.id.hour)
+        minute = rootView!!.findViewById(R.id.minute)
+        seconds = rootView!!.findViewById(R.id.seconds)
+        mStartButton = rootView!!.findViewById(R.id.startButton)
+        milli_seconds = rootView!!.findViewById(R.id.milli_second)
+        mReset = rootView!!.findViewById(R.id.reset)
+        mStartButton?.setOnClickListener {
+            if (flag){
+                handler?.removeCallbacks(runnable)
+                Time = Time + (SystemClock.uptimeMillis() - StartTime)
+                startButton?.setImageResource(R.drawable.ic_play)
+                flag=false
+            }else{
+                startButton?.setImageResource(R.drawable.pause)
+                StartTime = SystemClock.uptimeMillis()
+                handler?.postDelayed(runnable, 0)
+                flag=true
+            }
+
+        }
+        mReset?.setOnClickListener{
+            handler?.removeCallbacks(runnable)
+            startButton?.setImageResource(R.drawable.ic_play)
+            flag=false
+            this.Time = 0L
+            Seconds = 0
+            Minutes = Seconds / 60
+
+            Seconds = Seconds % 60
+
+            MilliSeconds = 0
 
 
+            if (Minutes.toString().length < 2) {
+                minute?.text = "0" + Minutes.toString()
+            } else {
+                minute?.text = Minutes.toString()
+            }
+            if (Seconds.toString().length < 2) {
+                seconds?.text = "0" + Seconds.toString()
+            } else {
+                seconds?.text = Seconds.toString()
+            }
+
+            milli_seconds?.text = MilliSeconds.toString()
+
+        }
+
+
+        handler = Handler()
         return rootView
     }
 
+    var runnable: Runnable = object : Runnable {
 
+        override fun run() {
+
+            MillisecondTime = Time + (SystemClock.uptimeMillis() - StartTime)
+            UpdateTime = TimeBuff + MillisecondTime
+
+            Seconds = (UpdateTime / 1000).toInt()
+
+            Minutes = Seconds / 60
+
+            Seconds = Seconds % 60
+
+            MilliSeconds = (UpdateTime % 1000).toInt()
+
+
+            if (Minutes.toString().length < 2) {
+                minute?.text = "0" + Minutes.toString()
+            } else {
+                minute?.text = Minutes.toString()
+            }
+            if (Seconds.toString().length < 2) {
+                seconds?.text = "0" + Seconds.toString()
+            } else {
+                seconds?.text = Seconds.toString()
+            }
+
+            milli_seconds?.text = MilliSeconds.toString()
+
+            handler?.postDelayed(this, 0)
+        }
+
+    }
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {

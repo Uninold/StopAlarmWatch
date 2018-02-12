@@ -71,7 +71,7 @@ class RingtoneService : Service() {
 
         var notify_manager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         var notification: Notification = NotificationCompat.Builder(this)
-                .setContentTitle("Alarm is going off")
+                .setContentTitle("Alarm")
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setSound(defaultSoundUri)
                 .setContentText("Click Me")

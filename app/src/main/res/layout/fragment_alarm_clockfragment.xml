@@ -13,26 +13,31 @@
         <TimePicker
             android:id="@+id/timepicker"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
 
         <Button
             android:id="@+id/btnStart"
             android:textColor="#fff"
-            android:background="#2c3e50"
+            android:background="#000"
             android:layout_width="match_parent"
             android:layout_marginRight="20px"
             android:layout_marginLeft="20px"
+            android:layout_marginTop="20px"
             android:layout_height="wrap_content"
             android:layout_below="@id/timepicker"
-            android:text="Start" />
+            android:text="Set Alarm" />
 
         <Button
             android:id="@+id/btnStop"
             android:textColor="#fff"
-            android:background="#2c3e50"
+            android:background="#000"
+            android:layout_width="match_parent"
             android:layout_marginRight="20px"
             android:layout_marginLeft="20px"
-            android:layout_width="match_parent"
+            android:layout_marginTop="20px"
             android:layout_height="wrap_content"
             android:layout_below="@id/timepicker"
             android:text="Stop"
@@ -42,8 +47,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/timepicker"
-            android:layout_marginTop="90px"
-            android:text="holllaaaaaaa"
+            android:layout_marginTop="120px"
+            android:text="Alarm not set"
+            android:textColor="#fff"
             android:textAlignment="center"/>
     </RelativeLayout>
 </FrameLayout>
